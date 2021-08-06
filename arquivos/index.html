@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/static/index.css" />
+    <title>Chat de Socket.IO</title>
+  </head>
+  <body onload="init()">
+    <header>
+      <nav>
+        <span> Chat de Socket.IO </span>
+      </nav>
+    </header>
+    <main>
+      <h1>Não precisa criar conta, só vai</h1>
+      <section>
+        <article>
+          <a class="link-button" href="/all" target="_blank">
+            Ir para chat público
+          </a>
+        </article>
+        <article>
+          <h2>Ou vá para uma sala privada:</h2>
+          <form
+            id="form-entrar"
+            action=""
+            onsubmit="event.preventDefault(); tentarEntrarChat(event);"
+          >
+            <div class="input-group">
+              <label for="id">ID da sala</label>
+              <input
+                id="id"
+                name="id"
+                type="text"
+                autocomplete="off"
+                required
+                oninput="validarCampo(event, 'erro-form-entrar-id')"
+                onblur="validarCampo(event, 'erro-form-entrar-id')"
+              />
+              <div id="erro-form-entrar-id" class="error">&nbsp;</div>
+            </div>
+            <div class="input-group submit">
+              <label for="senha-entrar">Senha da sala</label>
+              <input
+                id="senha-entrar"
+                name="senha"
+                type="password"
+                autocomplete="off"
+                oninput="validarCampo(event, 'erro-form-entrar-senha')"
+                onblur="validarCampo(event, 'erro-form-entrar-senha')"
+              />
+              <button type="submit">Entrar</button>
+              <div id="erro-form-entrar-senha" class="error">&nbsp;</div>
+            </div>
+          </form>
+        </article>
+        <article>
+          <h2>Ou se preferir, crie sua própria sala:</h2>
+          <form
+            id="form-criar"
+            action=""
+            onsubmit="event.preventDefault(); criarSalaPrivada(event);"
+          >
+            <div class="input-group submit">
+              <label for="senha-criar">Senha da sala</label>
+              <input
+                name="senha"
+                id="senha-criar"
+                type="password"
+                autocomplete="off"
+                required
+                oninput="validarCampo(event, 'erro-form-criar-senha')"
+                onblur="validarCampo(event, 'erro-form-criar-senha')"
+              />
+              <button type="submit">Criar</button>
+              <div id="erro-form-criar-senha" class="error">&nbsp;</div>
+            </div>
+          </form>
+        </article>
+      </section>
+    </main>
+    <div id="toast-aviso" class="toast">
+      <button class="fechar" onclick="fecharToast()">&times;</button>
+      <span id="toast-aviso-texto"></span>
+    </div>
+    <script defer src="/static/service.js"></script>
+    <script defer src="/static/index.js"></script>
+  </body>
+</html>

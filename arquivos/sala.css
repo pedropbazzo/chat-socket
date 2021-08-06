@@ -1,0 +1,153 @@
+.hidden {
+  display: none;
+}
+
+main {
+  margin: 0;
+  width: 100%;
+  max-width: 100%;
+  text-align: left;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+section {
+  width: 70%;
+  height: calc(100vh - 3rem);
+}
+
+article {
+  margin: 0;
+  padding: var(--spacing-sm);
+  height: 100%;
+  width: 100%;
+  position: relative;
+}
+
+aside {
+  width: 30%;
+  background: var(--dark-color);
+  height: calc(100vh - 3rem);
+}
+
+aside > h2 {
+  padding: 0 var(--spacing-sm);
+}
+
+.acoes {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 3rem;
+}
+
+.acao {
+  font-size: var(--font-size-xs);
+  padding: var(--spacing-xxs);
+}
+
+#lista-mensagens {
+  margin: var(--spacing-xs) 0;
+  width: 100%;
+  height: calc(100% - (6rem + 2 * var(--spacing-xs)));
+  overflow: auto;
+}
+
+#lista-mensagens > li {
+  margin: var(--spacing-xs) 0;
+  padding: var(--spacing-xxs);
+  width: 100%;
+  background: var(--medium-color);
+  color: var(--dark-color);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-bold);
+}
+
+#lista-mensagens > li.propria-mensagem {
+  background: var(--dark-color);
+  color: var(--light-color);
+}
+
+#lista-mensagens > li.aviso {
+  margin: var(--spacing-xs) 0;
+  margin: 0;
+  background: none;
+  color: var(--light-color);
+  width: 100%;
+  text-align: center;
+}
+
+#lista-mensagens > li > div {
+  font-size: var(--font-size-xxs);
+  padding-bottom: var(--spacing-xs);
+}
+
+#form-mensagem {
+  min-height: 3rem;
+}
+
+#lista-pessoas {
+  list-style-type: none;
+  color: var(--light-color);
+  padding: var(--spacing-xs) var(--spacing-sm);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-bold);
+}
+
+#lista-pessoas > li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.input-group {
+  height: 100%;
+}
+
+.backdrop {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100vw;
+  height: 100vh;
+  background: none;
+  z-index: -1;
+  transition: background 0.1s ease-in-out;
+}
+
+.backdrop.aparecer {
+  z-index: 1;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.modal {
+  position: fixed;
+  width: 700px;
+  max-width: 90%;
+  margin: auto;
+  height: fit-content;
+  bottom: 0;
+  transform: translateY(100%);
+  transition: all 0.1s ease-in-out;
+  background: var(--medium-color);
+  left: 0;
+  right: 0;
+  padding: var(--spacing-md);
+  text-align: center;
+  color: var(--dark-color);
+  font-weight: var(--font-weight-bold);
+  font-size: var(--font-size-sm);
+  z-index: 2;
+}
+
+.modal.aparecer {
+  top: 0;
+  transform: translateY(0);
+}
+
+.modal > .fechar {
+  color: var(--dark-color);
+}

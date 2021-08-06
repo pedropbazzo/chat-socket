@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/static/index.css" />
+    <link rel="stylesheet" href="/static/sala.css" />
+    <title>Chat de Socket.IO</title>
+  </head>
+  <body onload="init()">
+    <header>
+      <nav>
+        <span> Chat de Socket.IO <span id="nome-sala"></span></span>
+      </nav>
+    </header>
+    <main>
+      <section>
+        <article id="carregando">
+          <h1>Carregando chat, aguarde</h1>
+        </article>
+        <article id="sucesso" class="hidden">
+          <div class="acoes">
+            <button class="acao" onclick="sair()">Sair da sala</button>
+            <button class="acao" onclick="limparChat()">Limpar conversa</button>
+          </div>
+          <ul id="lista-mensagens"></ul>
+
+          <form
+            id="form-mensagem"
+            action=""
+            onsubmit="event.preventDefault(); enviarMensagem(event)"
+          >
+            <div class="input-group submit">
+              <input name="mensagem" autocomplete="off" /><button type="submit">
+                Enviar
+              </button>
+            </div>
+          </form>
+        </article>
+        <article id="erro" class="hidden">
+          <h1>Houve um erro, tente novamente mais tarde</h1>
+        </article>
+      </section>
+      <aside>
+        <h2>Online:</h2>
+        <ul id="lista-pessoas"></ul>
+      </aside>
+    </main>
+
+    <div
+      id="backdrop-modal"
+      class="backdrop"
+      onclick="fecharAbrirModal()"
+    ></div>
+    <div id="modal-nick" class="modal">
+      <button class="fechar" onclick="fecharAbrirModal()">&times;</button>
+      <h3>Trocar nick (anterior: <span id="nick-antigo"></span>)</h3>
+      <form
+        id="form-nick"
+        action=""
+        onsubmit="event.preventDefault(); trocarNick(event)"
+      >
+        <div class="input-group submit">
+          <label for="nick">Nick novo</label>
+          <input
+            name="nick"
+            id="nick"
+            required
+            autocomplete="off"
+            oninput="validarCampo(event, 'erro-form-nick'); validarSeEhMesmoNick(event, 'erro-form-nick')"
+            onblur="validarCampo(event, 'erro-form-nick'); validarSeEhMesmoNick(event, 'erro-form-nick')"
+          />
+          <button class="btn-dark" type="submit">Trocar</button>
+          <div id="erro-form-nick" class="error">&nbsp;</div>
+        </div>
+      </form>
+    </div>
+
+    <div id="toast-aviso" class="toast">
+      <button class="fechar" onclick="fecharToast()">&times;</button>
+      <span id="toast-aviso-texto"> </span>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script defer src="/static/service.js"></script>
+    <script defer src="/static/sala.js"></script>
+  </body>
+</html>
